@@ -1,0 +1,74 @@
+{
+    "path":"/exp/uboone/data/users/liangliu/workarea/fsi/ntuple/",
+    "run1":{
+        "beamon": {
+            "name": "xsec-current-bnb_beam_on_peleeTuple_uboone_v08_00_00_70_run1_C1.root",
+            "pot": 1.67e+20,
+            "trigger": 37273255.00
+        },
+        "beamoff":{
+            "name": "xsec-current-bnb_beam_off_peleeTuple_uboone_v08_00_00_70_run1.root",
+            "trigger": 65744587
+        },
+        "overlay": {
+            "name": "xsec-current-run1_bnb_nu_overlay_generator_resc_ntuple_ntuple_ana.root"
+        },
+        "dirt": {
+            "name": "xsec-current-overlay_peleeTuple_uboone_v08_00_00_70_run1_dirt.root"
+        }
+    },
+
+    "run2":{
+        "beamon": {
+            "name": "xsec-current-bnb_beam_on_peleeTuple_uboone_v08_00_00_70_run2.root",
+            "pot": 2.61E+20,
+            "trigger": 61882791.00
+        },
+        "beamoff":{
+            "name": "xsec-current-bnb_beam_off_peleeTuple_uboone_v08_00_00_70_run2.root",
+            "trigger": 153905891
+        },
+        "overlay": {
+            "name": "xsec-current-Run2_BNB_nu_overlay_rescattering_pelee_ntuple_ana.root"
+        },
+        "dirt": {
+            "name": "xsec-current-overlay_peleeTuple_uboone_v08_00_00_70_run2_dirt.root"
+        }
+    },
+
+    "run3":{
+        "beamon": {
+            "name": "xsec-current-run3_bnb_beam_on_crtremerging_pandora_reco2_run3_ana.root",
+            "pot": 2.57E+20,
+            "trigger": 61375491.00
+        },
+        "beamoff":{
+            "name": "xsec-current-bnb_beam_off_peleeTuple_uboone_v08_00_00_70_run3.root",
+            "trigger": 207167629
+        },
+        "overlay": {
+            "name": "xsec-current-Run3_BNB_nu_overlay_rescattering_pelee_ntuple_ana.root"
+        },
+        "dirt": {
+            "name": "xsec-current-overlay_peleeTuple_uboone_v08_00_00_70_run3_dirt.root"
+        }
+    },
+
+    "run5":{
+        "beamon": {
+            "name": "xsec-current-run5_bnb_beamon_PeLEE_ntuples_run5_ana.root",
+            "pot": 1.48E+20,
+            "trigger": 35265730.00
+        },
+        "beamoff":{
+            "name": "xsec-current-Run5_bnb_beamOff_PeLee_ntuples_run5_ana_ana.root",
+            "trigger": 107466402
+        },
+        "overlay": {
+            "name": "xsec-current-Run5_BNB_nu_overlay_rescattering_pelee_ntuple_ana.root"
+        },
+        "dirt": {
+            "name": "xsec-current-run5_bnb_dirt_overlay_run5_v08_00_00_85_reprocess_ntuple_ana.root"
+        }
+    }
+}
