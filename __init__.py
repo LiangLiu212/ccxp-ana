@@ -1,6 +1,5 @@
-from . import ntuple
-from . import selection
-from . import ccxp
-from . import bdt
+from .src.ntuple import ntuple
+from .src.selection import selection
+from .ccxp import ccxp
 
-__all__ = ["ntuple", "selection", "ccxp", "bdt"]
+__all__ = ["ccxp", "ntuple", "selection"]

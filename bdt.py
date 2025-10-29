@@ -24,11 +24,11 @@ class bdt:
         self.feature_branch = [
            "trk_distance_v", 
            "trk_score_v", 
-           "trk_range_muon_mom_v", 
+           #"trk_range_muon_mom_v", 
            "trk_llr_pid_score_v", 
            "trk_pid_chipr_v", 
            #"trk_len_v", 
-           "trk_energy_proton_v",
+           #"trk_energy_proton_v",
            #"trk_mcs_muon_mom_v",
            "range_mcs_difference",
            "pfp_num_daughter"

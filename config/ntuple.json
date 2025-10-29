@@ -3,8 +3,8 @@
     "run1":{
         "beamon": {
             "name": "xsec-current-bnb_beam_on_peleeTuple_uboone_v08_00_00_70_run1_C1.root",
-            "pot": 1.67e+20,
-            "trigger": 37273255.00
+            "pot": 1.67E+20,
+            "trigger": 37273255
         },
         "beamoff":{
             "name": "xsec-current-bnb_beam_off_peleeTuple_uboone_v08_00_00_70_run1.root",
@@ -15,6 +15,42 @@
         },
         "dirt": {
             "name": "xsec-current-overlay_peleeTuple_uboone_v08_00_00_70_run1_dirt.root"
+        },
+        "nuwro": {
+            "name": "xsec-current-nuwro_fakedata_peleeTuple_uboone_run1.root"
+        },
+        "detVarCV": {  
+            "name" :  "xsec-current-prodgenie_bnb_nu_overlay_detvar_CV_v08_00_00_84_run1_ntuple_ana.root" 
+        },  
+        "detVarCVExtra": {  
+            "name" :  "xsec-current-prodgenie_bnb_nu_overlay_detvar_CV_v08_00_00_84_run1_ntuple_ana.root" 
+        },  
+        "detVarLYatten": {  
+            "name" :  "xsec-current-prodgenie_bnb_nu_overlay_detvar_CV_v08_00_00_84_run1_ntuple_ana.root" 
+        },  
+        "detVarLYdown": {  
+            "name" :  "xsec-current-prodgenie_bnb_nu_overlay_detvar_LYDown_v08_00_00_84_run1_ntuple_ana.root" 
+        },  
+        "detVarLYrayl": {  
+            "name" :  "xsec-current-prodgenie_bnb_nu_overlay_detvar_LYRayleigh_v08_00_00_84_run1_ntuple_ana.root" 
+        },  
+        "detVarRecomb2": {  
+            "name" :  "xsec-current-prodgenie_bnb_nu_overlay_detvar_Recomb2_v08_00_00_84_run1_ntuple_ana.root" 
+        },  
+        "detVarSCE": {  
+            "name" :  "xsec-current-prodgenie_bnb_nu_overlay_detvar_SCE_v08_00_00_84_run1_ntuple_ana.root" 
+        },  
+        "detVarWMAngleXZ": {  
+            "name" :  "xsec-current-Run1_BNB_nu_pandora_reco2_detvar_WireModThetaXZ_ntuple_cnguyen_ntuple_ana.root" 
+        },  
+        "detVarWMAngleYZ": {  
+            "name" :  "xsec-current-Run1_BNB_nu_pandora_reco2_detvar_WireModThetaYZ_ntuple_cnguyen_ntuple_ana.root" 
+        },  
+        "detVarWMX": {  
+            "name" :  "xsec-current-Run1_BNB_nu_pandora_reco2_detvar_WireModX_ntuple_cnguyen_ntuple_ana.root" 
+        },  
+        "detVarWMYZ": {  
+            "name" :  "xsec-current-Run1_BNB_nu_pandora_reco2_detvar_WireModYZ_ntuple_ntuple_ana.root" 
         }
     },
 
@@ -22,7 +58,7 @@
         "beamon": {
             "name": "xsec-current-bnb_beam_on_peleeTuple_uboone_v08_00_00_70_run2.root",
             "pot": 2.61E+20,
-            "trigger": 61882791.00
+            "trigger": 61882791
         },
         "beamoff":{
             "name": "xsec-current-bnb_beam_off_peleeTuple_uboone_v08_00_00_70_run2.root",
@@ -33,6 +69,9 @@
         },
         "dirt": {
             "name": "xsec-current-overlay_peleeTuple_uboone_v08_00_00_70_run2_dirt.root"
+        },
+        "nuwro": {
+            "name": "xsec-current-nuwro_fakedata_peleeTuple_uboone_run2.root"
         }
     },
 
@@ -40,7 +79,7 @@
         "beamon": {
             "name": "xsec-current-run3_bnb_beam_on_crtremerging_pandora_reco2_run3_ana.root",
             "pot": 2.57E+20,
-            "trigger": 61375491.00
+            "trigger": 61375491
         },
         "beamoff":{
             "name": "xsec-current-bnb_beam_off_peleeTuple_uboone_v08_00_00_70_run3.root",
@@ -51,6 +90,117 @@
         },
         "dirt": {
             "name": "xsec-current-overlay_peleeTuple_uboone_v08_00_00_70_run3_dirt.root"
+        },
+        "nuwro": {
+            "name": "xsec-current-nuwro_fakedata_peleeTuple_uboone_run3.root"
+        },
+        "detVarCV": {  
+            "name" :  "xsec-current-overlay_pelee_ntuples_bnb_nu_detvar_run3_CV_reprocess_ana.root" 
+        },  
+        "detVarCVExtra": {  
+            "name" :  "xsec-current-overlay_pelee_ntuples_bnb_nu_detvar_run3_CVExtra_reprocess_ana.root" 
+        },  
+        "detVarLYdown": {  
+            "name" :  "xsec-current-overlay_pelee_ntuples_bnb_nu_detvar_run3_LYDown_reprocess_ana.root" 
+        },  
+        "detVarLYrayl": {  
+            "name" :  "xsec-current-overlay_pelee_ntuples_bnb_nu_detvar_run3_LYRayleigh_reprocess_ana.root" 
+        },  
+        "detVarLYatten": {  
+            "name" :  "xsec-current-overlay_pelee_ntuples_bnb_nu_detvar_run3_LYAttenuation_reprocess_ana.root" 
+        },  
+        "detVarSCE": {  
+            "name" :  "xsec-current-overlay_pelee_ntuples_bnb_nu_detvar_run3_SCE_reprocess_ana.root" 
+        },  
+        "detVarRecomb2": {  
+            "name" :  "xsec-current-overlay_pelee_ntuples_bnb_nu_detvar_run3_Recomb2_reprocess_ana.root" 
+        },  
+        "detVarWMX": {  
+            "name" :  "xsec-current-overlay_pelee_ntuples_bnb_nu_detvar_run3_WireModX_reprocess_ana.root" 
+        },  
+        "detVarWMYZ": {  
+            "name" :  "xsec-current-overlay_pelee_ntuples_bnb_nu_detvar_run3_WireModYZ_reprocess_ana.root" 
+        },  
+        "detVarWMAngleXZ": {  
+            "name" :  "xsec-current-overlay_pelee_ntuples_bnb_nu_detvar_run3_WireModThetaXZ_reprocess_ana.root" 
+        },  
+        "detVarWMAngleYZ": {  
+            "name" :  "xsec-current-overlay_pelee_ntuples_bnb_nu_detvar_run3_WireModThetaYZ_reprocess_ana.root" 
+        }
+    },
+
+    "run4a":{
+        "beamon": {
+            "name": "xsec-current-Run4a_bnb_beamOn_PeLee_ntuples_run4a_ana.root",
+            "pot": 4.50E+19,
+            "trigger": 9897624
+        },
+        "beamoff":{
+            "name": "xsec-current-Run4a_bnb_beamOff_PeLee_ntuples_run4a_ana.root",
+            "trigger": 27596585
+        },
+        "overlay": {
+            "name": "xsec-current-Run4a_BNB_nu_overlay_rescattering_pelee_ntuple_ana.root"
+        },
+        "dirt": {
+            "name": "xsec-current-Run4a_BNB_dirt_overlay_Pandora_Unified_Reco2_fixed_run4a_ana.root"
+        },
+        "nuwro": {
+            "name": "xsec-current-high_stat_prodgenie_bnb_nu_nuwro_overlay_run4a_pelee.root"
+        }
+    },
+
+    "run4":{
+        "beamon": {
+            "name": "xsec-current-run4_bnb_beamon_crtremerging_pandora_reco2_run4_ana.root",
+            "pot": 2.748e+20,
+            "trigger": 63771414
+        },
+        "beamoff":{
+            "name": "xsec-current-bnb_beam_off_peleeTuple_uboone_v08_00_00_73_run4.root",
+            "trigger": 210832771
+        },
+        "overlay": {
+            "name": "xsec-current-run4_BNB_nu_overlay_rescattering_pelee_ntuple_ana.root"
+        },
+        "dirt": {
+            "name": "xsec-current-overlay_peleeTuple_uboone_v08_00_00_70_run4_dirt.root"
+        },
+        "nuwro": {
+            "name": "xsec-current-high_stat_prodgenie_bnb_nu_nuwro_overlay_run4_pelee.root"
+        },
+        "detVarCV": {
+            "name" :  "xsec-current-Detvar_BNB_nu_pandora_reco2_CV_run4_reco2_ana.root"
+        },
+        "detVarCVExtra": {
+            "name" :  "xsec-current-Detvar_BNB_nu_pandora_reco2_CV_run4_reco2_ana.root"
+        },
+        "detVarLYdown": {
+            "name" :  "xsec-current-run4_5_bnb_nu_overlay_detvar_LYDown_reco2_pandora_unified_run4_ana.root"
+        },
+        "detVarLYrayl": {
+            "name" :  "xsec-current-run4_5_bnb_nu_overlay_detvar_LYRayleigh_reco2_pandora_unified_run4_ana.root"
+        },
+        "detVarLYatten": {
+            "name" :  "xsec-current-Run_4_BNB_Nu_Detvar_LYAttenuation_Pandora_Reco2_run4_ana.root"
+        },
+        "detVarSCE": {
+            "name" :  "xsec-current-run4_bnb_nu_detvar_SCE_pandora_reco2_ana.root"
+        },
+        "detVarRecomb2": {
+            "name" :  "xsec-current-run4_bnb_nu_detvar_Recomb2_pandora_reco2_ana.root"
+        },
+        "detVarWMX": {
+            "name" :  "xsec-current-run4_bnb_nu_detvar_wiremod_x_pandora_reco2_reco2_ana.root"
+        },
+        "detVarWMYZ": {
+            "name" :  "xsec-current-run4_bnb_nu_detvar_wiremod_yz_pandora_reco2_reco2_ana.root"
+        },
+        "detVarWMAngleXZ": {
+            "name" :  "xsec-current-run4_bnb_nu_detvar_Pandora_WireMod_Theta_XZ_reco2_ana.root"
+        },
+        "detVarWMAngleYZ": {
+            "name" :  "xsec-current-run4_bnb_nu_detvar_Pandora_WireMod_Theta_YZ_reco2_ana.root"
         }
     },
 
@@ -69,6 +219,42 @@
         },
         "dirt": {
             "name": "xsec-current-run5_bnb_dirt_overlay_run5_v08_00_00_85_reprocess_ntuple_ana.root"
+        },
+        "nuwro": {
+            "name": "xsec-current-high_stat_prodgenie_bnb_nu_nuwro_overlay_run5_pelee.root"
+        },
+        "detVarCV": {  
+            "name" :  "xsec-current-run5_DetVar_bnb_CV_Pandora_Unified_reco2_run5_ana.root" 
+        },  
+        "detVarCVExtra": {  
+            "name" :  "xsec-current-run5_DetVar_bnb_CV_Pandora_Unified_reco2_run5_ana.root" 
+        },  
+        "detVarLYdown": {  
+            "name" :  "xsec-current-run4_5_bnb_nu_overlay_detvar_LYDown_reco2_pandora_unified_run5_ana.root" 
+        },  
+        "detVarLYrayl": {  
+            "name" :  "xsec-current-run4_5_bnb_nu_overlay_detvar_LYRayleigh_reco2_pandora_unified_run5_ana.root" 
+        },  
+        "detVarLYatten": {  
+            "name" :  "xsec-current-Run_5_BNB_Nu_Detvar_LYAttenuation_Pandora_Reco2_run5_ana.root" 
+        },  
+        "detVarSCE": {  
+            "name" :  "xsec-current-run5_bnb_nu_detvar_SCE_pandora_reco2_ana.root" 
+        },  
+        "detVarRecomb2": {  
+            "name" :  "xsec-current-run5_bnb_nu_detvar_Recomb2_pandora_reco2_ana.root" 
+        },  
+        "detVarWMX": {  
+            "name" :  "xsec-current-run5_bnb_nu_detvar_wire_mod_x_Pandora_reco2_reco2_ana.root" 
+        },  
+        "detVarWMYZ": {  
+            "name" :  "xsec-current-run5_bnb_nu_detvar_wire_mod_yz_Pandora_reco2_reco2_ana.root" 
+        },  
+        "detVarWMAngleXZ": {  
+            "name" :  "xsec-current-run5_bnb_nu_detvar_Pandora_WireMod_Theta_XZ_reco2_reco2_ana.root" 
+        },  
+        "detVarWMAngleYZ": {  
+            "name" :  "xsec-current-run5_bnb_nu_detvar_Pandora_WireMod_Theta_YZ_reco2_reco2_ana.root" 
         }
     }
 }
