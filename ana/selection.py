@@ -1,5 +1,6 @@
 #from . import ntuple
 import awkward as ak
+from .BDT import bdt
 
 class selection:
     def __init__(self, nt):
@@ -28,6 +29,7 @@ class selection:
     def execute(self):
         self.pre_selection()
         self.filter_containment_trk()
+        self.apply_bdt()
 
     def _inside_fv(self, x, y, z):
         return (x > self.FV_x_min) & (x < self.FV_x_max) & (y > self.FV_y_min) & (y < self.FV_y_max) & (z > self.FV_z_min) & (z < self.FV_z_max)
@@ -71,3 +73,7 @@ class selection:
         mask2 = self._inside_cv(trk_sce_end_x_v, trk_sce_end_y_v, trk_sce_end_z_v)
         mask = mask1 & mask2
         self.ntuple._apply_cut_trk(mask)
+
+    def apply_bdt(self):
+        model = bdt()
+        print("Hello BDT!")

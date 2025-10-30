@@ -32,6 +32,22 @@
         ]
     },
     "true":{
+        "signal":[
+             "mc_pdg",
+             "mc_E",
+             "mc_px",
+             "mc_py",
+             "mc_pz",
+             "mc_generator_pdg",
+             "mc_generator_mother",
+             "mc_generator_rescatter",
+             "mc_generator_trackid",
+             "mc_generator_statuscode",
+             "mc_generator_E",
+             "mc_generator_px",
+             "mc_generator_py",
+             "mc_generator_pz"
+        ],
         "track": ["backtracked_pdg",
              "backtracked_e",
              "backtracked_px",

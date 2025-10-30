@@ -37,6 +37,10 @@ class ntuple:
         self.branch_true_evt = tree.arrays(self.branches["true"]["event"], library="ak")
         self.branch_true_trk = tree.arrays(self.branches["true"]["track"], library="ak")
         self.branch_weight_evt   = tree.arrays(self.branches["weight"], library="ak")
+        try:
+            self.branch_true_signal = tree.arrays(self.branches["true"]["signal"], library="ak")
+        except uproot.KeyInFileError as e:
+            print(f"Skip true signal branches for non-overlay!")
         self._broadcast_weight_to_trk()
 
 
@@ -118,7 +122,19 @@ class ntuple:
         weight = self.branch_weight_trk[self.branches["weight"][0]] * self.branch_weight_trk[self.branches["weight"][1]]
         return [ak.flatten(self.branch_reco_trk[name]), ak.flatten(weight)]
 
+    def add_true_evt_branch(self, name, arr):
+        self.branches["true"]["event"].append(name)
+        self.branch_true_evt = ak.with_field(self.branch_true_evt, arr, name)
+    def add_true_trk_branch(self, name, arr):
+        self.branches["true"]["track"].append(name)
+        self.branch_true_trk = ak.with_field(self.branch_true_trk, arr, name)
 
+    def add_reco_evt_branch(self, name, arr):
+        self.branches["reco"]["event"].append(name)
+        self.branch_reco_evt = ak.with_field(self.branch_reco_evt, arr, name)
+    def add_reco_trk_branch(self, name, arr):
+        self.branches["reco"]["track"].append(name)
+        self.branch_reco_trk = ak.with_field(self.branch_reco_trk, arr, name)
 
     def plot1d(self, bname, bins=50, xrange=None, title = ""):
         x_title = bname

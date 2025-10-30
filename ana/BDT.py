@@ -1,7 +1,7 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import sys, importlib
+import sys
 import numpy as np
 import uproot
 import awkward as ak
@@ -16,7 +16,6 @@ from sklearn.metrics import ConfusionMatrixDisplay, classification_report, accur
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
 import matplotlib.pyplot as plt
-from . import ccxp
 
 
 class bdt:
@@ -106,10 +105,10 @@ class bdt:
 
     def predict(self, ntuple):
         model = xgb.XGBClassifier()
-        model.load_model("/exp/uboone/app/users/liangliu/analysis-code/tutorial/script/ccxp/dev/config/ccxp.json")  # or model.bst
-        pred_features = ntuple.data.branches_trk[self.feature_branch]
+        model.load_model("/exp/uboone/app/users/liangliu/Analysis/ccxp/config/ccxp.json")  # or model.bst
+        pred_features = ntuple.branch_reco_trk[self.feature_branch]
         pred_out = model.predict(ak.to_dataframe(pred_features))
-        tmp = ntuple.data.branches_trk["trk_distance_v"]
+        tmp = ntuple.branch_reco_trk[self.feature_branch[0]]
         pred_pdg = ak.unflatten(ak.Array(pred_out), ak.num(tmp))
         return pred_pdg
 
