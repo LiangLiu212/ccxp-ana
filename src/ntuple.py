@@ -82,8 +82,8 @@ class ntuple:
 
         len_after1 = len(ak.flatten(self.branch_reco_trk["trk_distance_v"]))
         len_after2 = len(ak.flatten(mask))
-        print(f"_apply_cut_trk: length before: {len_before1} {len_before2}")
-        print(f"_apply_cut_trk: length after: {len_after1} {len_after2}")
+        #print(f"_apply_cut_trk: length before: {len_before1} {len_before2}")
+        #print(f"_apply_cut_trk: length after: {len_after1} {len_after2}")
 
     def _apply_cut_evt(self, mask):
         len_before1 = len(mask)
@@ -99,8 +99,8 @@ class ntuple:
 
         len_after1 = len(mask)
         len_after2 = len(self.branch_reco_evt[self.branches["reco"]["event"][0]])
-        print(f"_apply_cut_evt: length before: {len_before1} {len_before2}")
-        print(f"_apply_cut_evt: length after: {len_after1} {len_after2}")
+        #print(f"_apply_cut_evt: length before: {len_before1} {len_before2}")
+        #print(f"_apply_cut_evt: length after: {len_after1} {len_after2}")
 
     def get_trk_feature_pdg(self, name):
         if self.is_mc:
@@ -121,6 +121,15 @@ class ntuple:
     def get_trk_feature(self, name):
         weight = self.branch_weight_trk[self.branches["weight"][0]] * self.branch_weight_trk[self.branches["weight"][1]]
         return [ak.flatten(self.branch_reco_trk[name]), ak.flatten(weight)]
+
+
+    def get_reco_evt_feature_cate(self, name):
+        feature = self.branch_reco_evt[name]
+        weight = self.branch_weight_evt[self.branches["weight"][0]] * self.branch_weight_evt[self.branches["weight"][1]]
+        mask_signal = self.branch_true_evt["is_mc_signal"]
+        output_feature = [feature[~mask_signal], feature[mask_signal]]
+        output_weight = [weight[~mask_signal], weight[mask_signal]]
+        return [output_feature, output_weight]
 
     def get_reco_evt_feature(self, name):
         weight = self.branch_weight_evt[self.branches["weight"][0]] * self.branch_weight_evt[self.branches["weight"][1]]

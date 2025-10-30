@@ -32,8 +32,8 @@ class ccxp:
         f = open(self.script_path + "/config/ntuple.json")
         self.files = json.load(f)
 
-    def execute(self):
-        self.load_ntuple()
+    def execute(self, run = ["run1"]):
+        self.load_ntuple(run=run)
         self._processing_ntuple(processing.define_signal)
         self._processing_ntuple(processing.construct_new_track_feature)
         self._apply_selection()
@@ -195,7 +195,8 @@ class ccxp:
             for s, val in self.files[r].items():
                 if s not in ["overlay", "beamoff", "beamon", "dirt"]: continue
     
-                branch_val[r][s] = self.ntuples[r][s].get_reco_evt_feature(branch_name)
+                #branch_val[r][s] = self.ntuples[r][s].get_reco_evt_feature(branch_name)
+                branch_val[r][s] = processing.get_reco_event_feature(r, s, self.ntuples[r][s], branch_name)
     
                 if s == "beamoff":
                     scale_factor[r][s] = self.ntuples[r]["beamon"].trigger/self.ntuples[r][s].trigger
@@ -203,18 +204,30 @@ class ccxp:
                     scale_factor[r][s] = self.ntuples[r]["beamon"].pot/self.ntuples[r][s].pot
     
                 if s in val_plot:
-                    val_plot[s] = ak.concatenate([val_plot[s], branch_val[r][s][0]])
+                    if s == "overlay":
+                        for i in range(len(val_plot[s])):
+                            val_plot[s][i] =  ak.concatenate([val_plot[s][i], branch_val[r][s][0][i]])
+                    else:
+                        val_plot[s] = ak.concatenate([val_plot[s], branch_val[r][s][0]])
                 else:
                     val_plot[s] = branch_val[r][s][0]
     
                 if s in weight_plot:
-                    weight_plot[s] = ak.concatenate([weight_plot[s], branch_val[r][s][1]*scale_factor[r][s]])
+                    if s == "overlay":
+                        for i in range(len(weight_plot[s])):
+                            weight_plot[s][i] =  ak.concatenate([weight_plot[s][i], branch_val[r][s][1][i]*scale_factor[r][s]])
+                    else:
+                        weight_plot[s] = ak.concatenate([weight_plot[s], branch_val[r][s][1]*scale_factor[r][s]])
                 else:
                     weight_plot[s] = branch_val[r][s][1]
-                    weight_plot[s] = weight_plot[s]*scale_factor[r][s]
+                    if s == "overlay":
+                        for i in range(len(weight_plot[s])):
+                            weight_plot[s][i] = weight_plot[s][i]*scale_factor[r][s]
+                    else:
+                        weight_plot[s] = weight_plot[s]*scale_factor[r][s]
     
-        overlay_val_plot=[val_plot["beamoff"], val_plot["dirt"], val_plot["overlay"]]
-        overlay_weight_plot=[weight_plot["beamoff"], weight_plot["dirt"], weight_plot["overlay"]]
+        overlay_val_plot=[val_plot["beamoff"], val_plot["dirt"], val_plot["overlay"][0], val_plot["overlay"][1]]
+        overlay_weight_plot=[weight_plot["beamoff"], weight_plot["dirt"], weight_plot["overlay"][0], weight_plot["overlay"][1]]
     
         overlay_weight_plot_fixed = [ak.where(np.isinf(w), 1, w) for w in overlay_weight_plot]
         return val_plot["beamon"], overlay_val_plot, overlay_weight_plot_fixed

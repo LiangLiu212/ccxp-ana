@@ -1,6 +1,7 @@
 #from . import ntuple
 import awkward as ak
 from .BDT import bdt
+import numpy as np
 
 class selection:
     def __init__(self, nt):
@@ -26,6 +27,7 @@ class selection:
         
         self.trk_score_cut = 0.5
         self.topological_score_cut = 0.1
+        self.proton_mass = 0.93827208816
     def execute(self):
         self.pre_selection()
         self.filter_containment_trk()
@@ -90,5 +92,26 @@ class selection:
     def final_cut(self):
         # final cuts include the topology cut and the muon/proton momentum cut
         print("Applying final cut...")
+        bdt_predict_pdg = self.ntuple.branch_reco_trk["bdt_predict_pdg"]
+        trk_range_muon_mom_v = self.ntuple.branch_reco_trk["trk_range_muon_mom_v"]
+        trk_energy_proton_v = self.ntuple.branch_reco_trk["trk_energy_proton_v"]
+        muon_mom = ak.max(trk_range_muon_mom_v[(bdt_predict_pdg == 13)], axis=1)
+        mask = (muon_mom > 0.1) & (muon_mom < 1.2)
+        muon_mom = ak.max(trk_range_muon_mom_v[(bdt_predict_pdg == 2212)], axis=1)
+        pKE = trk_energy_proton_v[bdt_predict_pdg == 2212]
+        proton_mom = np.sqrt(pKE*pKE + 2*self.proton_mass*pKE)
+        proton_multiplicity = ak.num(proton_mom[(proton_mom > 0.25) & (proton_mom < 1.0)])
+        proton_multiplicity = ak.where(proton_multiplicity > 3, 3, proton_multiplicity)
+        self.ntuple.add_reco_evt_branch("proton_multiplicity", proton_multiplicity)
+        self.ntuple._apply_cut_evt(mask)
+
+        topological_score = self.ntuple.branch_reco_evt["topological_score"]
+        proton_multiplicity = self.ntuple.branch_reco_evt["proton_multiplicity"]
+        mask0 = ~((proton_multiplicity == 0) & (topological_score < 0.2))
+        mask1 = ~((proton_multiplicity == 1) & (topological_score < 0.2))
+        mask = mask0 & mask1
+        self.ntuple._apply_cut_evt(mask)
+        print("Done final cut!")
+
 
 

@@ -11,7 +11,8 @@ def define_signal(r, s, nt):
     
     mask = (nt.branch_true_evt["mc_ccnc"] == 0)
     # only proton, neutron, muon, and charged-pion in the final states
-    pdg_mask = (np.abs(pdg) != 2212) & (np.abs(pdg) != 2112) & (np.abs(pdg) != 13) & (np.abs(pdg) != 211)
+    # pdg_mask = (np.abs(pdg) != 2212) & (np.abs(pdg) != 2112) & (np.abs(pdg) != 13) & (np.abs(pdg) != 211)
+    pdg_mask = (np.abs(pdg) != 2212) & (np.abs(pdg) != 2112) & (np.abs(pdg) != 13)
     mask = mask & (ak.num(pdg[pdg_mask]) == 0)
     # only one muon in the final states
     mask = mask & (ak.num(pdg[pdg == 13]) == 1)
@@ -53,3 +54,17 @@ def construct_new_track_feature(r, s, nt):
     range_mcs_difference = (nt.branch_reco_trk['trk_range_muon_mom_v'] - nt.branch_reco_trk['trk_mcs_muon_mom_v'])/nt.branch_reco_trk['trk_range_muon_mom_v'] 
     nt.add_reco_trk_branch("pfp_num_daughter", pfp_num_daughter)
     nt.add_reco_trk_branch("range_mcs_difference", range_mcs_difference)
+
+def get_reco_event_feature(r, s, nt, name):
+    if s == "overlay":
+        feature = nt.branch_reco_evt[name]
+        weight = nt.branch_weight_evt[nt.branches["weight"][0]] * nt.branch_weight_evt[nt.branches["weight"][1]]
+        mask_signal = nt.branch_true_evt["is_mc_signal"]
+        output_feature = [feature[~mask_signal], feature[mask_signal]]
+        output_weight = [weight[~mask_signal], weight[mask_signal]]
+        return [output_feature, output_weight]
+    else:
+        weight = nt.branch_weight_evt[nt.branches["weight"][0]] * nt.branch_weight_evt[nt.branches["weight"][1]]
+        return [nt.branch_reco_evt[name], weight]
+
+

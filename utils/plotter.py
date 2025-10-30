@@ -53,9 +53,9 @@ def event_plotter(branch_name, data, mc, mc_weight, pot=0, title="title;x;y", bi
 
     # (Optional) overlay step-style histogram for reference
     #plt.step(bins[:-1], counts, where='mid', color='blue', alpha=0.5, label="Histogram")
-    labels = ["BeamOff", "Dirt", "overlay"]
-    hatches=["//", "", ""]
-    colors = ["tab:gray", "#ff7f0e", "#1f77b4"]
+    labels = ["BeamOff", "Dirt", "overlay bkg", "signal"]
+    hatches=["//", "", "", ""]
+    colors = ["tab:gray", "#ff7f0e", "#1f77b4", "tab:red"]
 
     plt.hist(
         mc,
