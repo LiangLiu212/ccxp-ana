@@ -107,9 +107,13 @@ class bdt:
         model = xgb.XGBClassifier()
         model.load_model("/exp/uboone/app/users/liangliu/Analysis/ccxp/config/ccxp.json")  # or model.bst
         pred_features = ntuple.branch_reco_trk[self.feature_branch]
+        pred_features = {f: ak.flatten(pred_features[f]) for f in pred_features.fields}
         pred_out = model.predict(ak.to_dataframe(pred_features))
         tmp = ntuple.branch_reco_trk[self.feature_branch[0]]
         pred_pdg = ak.unflatten(ak.Array(pred_out), ak.num(tmp))
+        pred_pdg = ak.where(pred_pdg == 1, 13, pred_pdg)
+        pred_pdg = ak.where(pred_pdg == 2, 211, pred_pdg)
+        pred_pdg = ak.where(pred_pdg == 3, 2212, pred_pdg)
         return pred_pdg
 
         

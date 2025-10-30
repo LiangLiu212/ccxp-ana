@@ -122,6 +122,10 @@ class ntuple:
         weight = self.branch_weight_trk[self.branches["weight"][0]] * self.branch_weight_trk[self.branches["weight"][1]]
         return [ak.flatten(self.branch_reco_trk[name]), ak.flatten(weight)]
 
+    def get_reco_evt_feature(self, name):
+        weight = self.branch_weight_evt[self.branches["weight"][0]] * self.branch_weight_evt[self.branches["weight"][1]]
+        return [self.branch_reco_evt[name], weight]
+
     def add_true_evt_branch(self, name, arr):
         self.branches["true"]["event"].append(name)
         self.branch_true_evt = ak.with_field(self.branch_true_evt, arr, name)

@@ -22,6 +22,7 @@ from .ana import processing
 from .ana.selection import selection
 
 from .utils.plotter import track_plotter
+from .utils.plotter import event_plotter
 
 
 
@@ -61,6 +62,14 @@ class ccxp:
         for r in self.run:
             pot += self.ntuples[r]["beamon"].pot
         track_plotter(branch_name, data, mc, mc_weight, pot=pot, title=title, bins=bins, xrange=xrange, save=save)
+
+    def plot_event(self, branch_name, title="title;x;y", bins=50, xrange=(-1, 1), save=False):
+        data, mc, mc_weight = self._construct_event_feature(branch_name)
+        pot = 0
+        for r in self.run:
+            pot += self.ntuples[r]["beamon"].pot
+        event_plotter(branch_name, data, mc, mc_weight, pot=pot, title=title, bins=bins, xrange=xrange, save=save)
+
 
     def _construct_track_feature(self, branch_name):
 
@@ -175,4 +184,38 @@ class ccxp:
 
         return val_plot["beamon"], overlay_val_plot, overlay_weight_plot_fixed
 
+
+    def _construct_event_feature(self, branch_name):
+        branch_val = defaultdict(lambda: defaultdict())
+        scale_factor = defaultdict(lambda: defaultdict())
+        val_plot = {}
+        weight_plot = {}
+    
+        for r in self.run:
+            for s, val in self.files[r].items():
+                if s not in ["overlay", "beamoff", "beamon", "dirt"]: continue
+    
+                branch_val[r][s] = self.ntuples[r][s].get_reco_evt_feature(branch_name)
+    
+                if s == "beamoff":
+                    scale_factor[r][s] = self.ntuples[r]["beamon"].trigger/self.ntuples[r][s].trigger
+                else:
+                    scale_factor[r][s] = self.ntuples[r]["beamon"].pot/self.ntuples[r][s].pot
+    
+                if s in val_plot:
+                    val_plot[s] = ak.concatenate([val_plot[s], branch_val[r][s][0]])
+                else:
+                    val_plot[s] = branch_val[r][s][0]
+    
+                if s in weight_plot:
+                    weight_plot[s] = ak.concatenate([weight_plot[s], branch_val[r][s][1]*scale_factor[r][s]])
+                else:
+                    weight_plot[s] = branch_val[r][s][1]
+                    weight_plot[s] = weight_plot[s]*scale_factor[r][s]
+    
+        overlay_val_plot=[val_plot["beamoff"], val_plot["dirt"], val_plot["overlay"]]
+        overlay_weight_plot=[weight_plot["beamoff"], weight_plot["dirt"], weight_plot["overlay"]]
+    
+        overlay_weight_plot_fixed = [ak.where(np.isinf(w), 1, w) for w in overlay_weight_plot]
+        return val_plot["beamon"], overlay_val_plot, overlay_weight_plot_fixed
 

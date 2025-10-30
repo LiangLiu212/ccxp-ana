@@ -30,6 +30,7 @@ class selection:
         self.pre_selection()
         self.filter_containment_trk()
         self.apply_bdt()
+        self.final_cut()
 
     def _inside_fv(self, x, y, z):
         return (x > self.FV_x_min) & (x < self.FV_x_max) & (y > self.FV_y_min) & (y < self.FV_y_max) & (z > self.FV_z_min) & (z < self.FV_z_max)
@@ -75,5 +76,19 @@ class selection:
         self.ntuple._apply_cut_trk(mask)
 
     def apply_bdt(self):
+        print("Applying BDT...")
         model = bdt()
-        print("Hello BDT!")
+        bdt_predict_pdg = model.predict(self.ntuple)
+        self.ntuple.add_reco_trk_branch("bdt_predict_pdg", bdt_predict_pdg)
+        print("Done BDT!")
+
+        mask = (ak.num(bdt_predict_pdg) > 0)
+        mask = mask & (ak.num(bdt_predict_pdg[(bdt_predict_pdg != 13) & (bdt_predict_pdg != 2212)]) == 0)
+        mask = mask & (ak.num(bdt_predict_pdg[bdt_predict_pdg == 13]) == 1)
+        self.ntuple._apply_cut_evt(mask)
+
+    def final_cut(self):
+        # final cuts include the topology cut and the muon/proton momentum cut
+        print("Applying final cut...")
+
+
