@@ -30,7 +30,8 @@ class selection:
         self.proton_mass = 0.93827208816
     def execute(self):
         self.pre_selection()
-        self.filter_containment_trk()
+        #self.filter_containment_trk()
+        self.filter_containment_evt()
         self.apply_bdt()
         self.final_cut()
 
@@ -61,9 +62,23 @@ class selection:
         trk_score_v = self.ntuple.branch_reco_trk["trk_score_v"]
         trk_like = ak.min(trk_score_v, axis=1) > self.trk_score_cut
 
-        mask = (cosmic_ip > self.cosmic_ip_cut) & trk_like
+        mask = (cosmic_ip > self.cosmic_ip_cut) & trk_like & nu_in_fv
 
         self.ntuple._apply_cut_evt(mask)
+
+
+    def filter_containment_evt(self):
+        trk_sce_start_x_v = self.ntuple.branch_reco_trk["trk_sce_start_x_v"]
+        trk_sce_start_y_v = self.ntuple.branch_reco_trk["trk_sce_start_y_v"]
+        trk_sce_start_z_v = self.ntuple.branch_reco_trk["trk_sce_start_z_v"]
+        trk_sce_end_x_v = self.ntuple.branch_reco_trk["trk_sce_end_x_v"]
+        trk_sce_end_y_v = self.ntuple.branch_reco_trk["trk_sce_end_y_v"]
+        trk_sce_end_z_v = self.ntuple.branch_reco_trk["trk_sce_end_z_v"]
+        mask1 = self._inside_cv(trk_sce_start_x_v, trk_sce_start_y_v, trk_sce_start_z_v)
+        mask2 = self._inside_cv(trk_sce_end_x_v, trk_sce_end_y_v, trk_sce_end_z_v)
+        mask = ak.all(mask1, axis=1) & ak.all(mask2, axis=1)
+        self.ntuple._apply_cut_evt(mask)
+
 
     def filter_containment_trk(self):
         trk_sce_start_x_v = self.ntuple.branch_reco_trk["trk_sce_start_x_v"]
@@ -107,7 +122,7 @@ class selection:
 
         topological_score = self.ntuple.branch_reco_evt["topological_score"]
         proton_multiplicity = self.ntuple.branch_reco_evt["proton_multiplicity"]
-        mask0 = ~((proton_multiplicity == 0) & (topological_score < 0.2))
+        mask0 = ~((proton_multiplicity == 0) & (topological_score < 0.3))
         mask1 = ~((proton_multiplicity == 1) & (topological_score < 0.2))
         mask = mask0 & mask1
         self.ntuple._apply_cut_evt(mask)
